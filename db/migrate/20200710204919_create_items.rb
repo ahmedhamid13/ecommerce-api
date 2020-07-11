@@ -6,7 +6,7 @@ class CreateItems < ActiveRecord::Migration[6.0]
       t.integer :stock, null: false, default: 0
       t.string :brand, default: 'brand'
       t.text :description, default: 'description'
-      t.text :images
+      # t.text :images
 
       t.timestamps
     end

@@ -65,7 +65,6 @@ ActiveRecord::Schema.define(version: 2020_07_10_210424) do
     t.integer "stock", default: 0, null: false
     t.string "brand", default: "brand"
     t.text "description", default: "description"
-    t.text "images"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -93,8 +92,6 @@ ActiveRecord::Schema.define(version: 2020_07_10_210424) do
     t.datetime "confirmation_sent_at"
     t.string "unconfirmed_email"
     t.string "name"
-    t.string "nickname"
-    t.string "image"
     t.string "email"
     t.json "tokens"
     t.datetime "created_at", precision: 6, null: false
