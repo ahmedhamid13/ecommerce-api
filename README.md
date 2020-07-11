@@ -32,7 +32,9 @@
     ```
 
 # Production ecommece-api url
-    ```sh https://ecommer-api.herokuapp.com/```
+    ```
+    https://ecommer-api.herokuapp.com
+    ```
 
 # Created_by: Ahmed Abdelhamid
 
