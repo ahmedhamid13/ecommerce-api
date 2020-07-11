@@ -3,7 +3,7 @@ class CreateSubCategories < ActiveRecord::Migration[6.0]
     create_table :sub_categories do |t|
       t.references :item, null: false, foreign_key: true
       t.references :category, null: false, foreign_key: true
-      t.string :title, null: false, default: 'sub_category_title'
+      t.string :title, null: false
 
       t.timestamps
     end

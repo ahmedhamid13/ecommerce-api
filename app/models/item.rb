@@ -20,7 +20,7 @@ class Item < ApplicationRecord
     def as_json(options={})
         super(options).merge({
             images: self.get_images,
-            main_category: self.category,
+            main_category: self.category.sample,
             sub_categories: self.sub_categories
         })
     end

@@ -8,7 +8,7 @@
     ```
 2. cd inside the project
     ```sh
-    cd ecommerce_api
+    cd ecommerce-api
     ```
 3.  Run this command to install all gems we used
     ```sh
@@ -34,5 +34,51 @@
 # Production ecommece-api url
     https://ecommer-api.herokuapp.com
 
-# Created_by: Ahmed Abdelhamid
+# Api-EndPoints
+
+1) categoreis end-points
+
+    * GET       /categories
+    * GET       /categories/:id
+    * POST      /categories         
+        >> params: title
+    * PUT       /categories/:id          
+        >> params: title
+    * DELETE    /categories/:id
+
+2) items end-points
+
+    * GET       /items
+    * GET       /items          
+        >> params: search
+    * GET       /items/:id
+    * POST      /items         
+        >> params: title, brand, description, stock, price, images[], cat[category_id, cat[sub_categories
+    * PUT       /items/:id
+        >> params: title, brand, description, stock, price, images[] 
+    * DELETE    /items/:id
+
+3) carts end-points
+
+    * GET       /carts
+    * GET       /carts/:id
+    * POST      /carts         
+        >> params: item_id, user_id, quantity 
+    * DELETE    /carts/:id
+
+4) users end-points
+
+    * POST      /users         
+        >> params: name, email, password, password_confirmation, avatar
+    * PUT      /users         
+        >> params: password, password_confirmation
+    * DELETE    /users
+    * POST      /users/sign_in        
+        >> params: email, password
+    * DELETE    /users/sign_out
+        >> params: uid, access-token, client
+
+    and Authenticate all requests you must pass this params: uid, access-token, client, with every request 
+
+# By: Ahmed Abdelhamid
 
