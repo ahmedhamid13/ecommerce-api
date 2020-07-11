@@ -1,24 +1,39 @@
-# README
+# E-Commerce API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Getting Start
 
-Things you may want to cover:
+1. Download the zipped file and unzip it or Clone it
+    ```
+    https://github.com/Ahmed-Abd-elhamid/ecommerce-api
+    ```
+2. cd inside the project
+    ```sh
+    cd ecommerce_api
+    ```
+3.  Run this command to install all gems we used
+    ```sh
+    bundle install
+    ```
+4. run this command to create your database
+    ```sh
+    rake db:create db:migrate
+    ```
+5. seed the database - generate fake test data
+    ```sh
+    rake db:seed
+    ```
+6. get api-endpoints by
+    ```sh
+    rake routes
+    ```
+7. Start your server
+    ```sh
+    rails server
+    ```
 
-* Ruby version
+# Production ecommece-api url 
 
-* System dependencies
 
-* Configuration
 
-* Database creation
+# Created_by: Ahmed Abdelhamid
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
