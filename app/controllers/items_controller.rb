@@ -16,9 +16,14 @@ class ItemsController < ApplicationController
   # POST /items
   def create
     @item = Item.new(item_params)
-
+    # item_category()
     if @item.save
-      render json: @item, status: :created, location: @item
+      if item_category()
+        render json: @item, status: :created, location: @item
+      else
+        @item.destroy
+        render json: {category: "Not Exist"}, status: 400
+      end
     else
       render json: @item.errors, status: :unprocessable_entity
     end
@@ -46,6 +51,23 @@ class ItemsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def item_params
-      params.require(:item).permit(:title, :price, :stock, :brand, :description, :images => [])
+      params.permit(:title, :price, :stock, :brand, :description, :images => [])
+    end
+
+    # Only allow a trusted parameter "white list" through.
+    def cat_params
+      params.permit(:category_id, :sub_categories => [])
+    end
+
+    def item_category
+      @category = Category.find_by(id: cat_params[:category_id])
+      cat_params[:sub_categories].each do |sub_category|
+        @subcat = SubCategory.new(title: sub_category, category_id: @category.id, item_id: @item.id)
+        unless @subcat.save
+          SubCategory.where(item_id: @item.id).destroy_all
+          return false
+        end
+      end
+      return true
     end
 end

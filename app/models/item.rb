@@ -1,4 +1,6 @@
 class Item < ApplicationRecord
+    has_many :sub_categories
+    has_many :category, through: :sub_categories
     has_many :item_carts
     has_many :carts, through: :item_carts
     has_many_attached :images
@@ -17,7 +19,10 @@ class Item < ApplicationRecord
 
     def as_json(options={})
         super(options).merge({
-            imagas: self.get_images
+            images: self.get_images,
+            main_category: self.category,
+            sub_categories: self.sub_categories
         })
     end
+
 end
