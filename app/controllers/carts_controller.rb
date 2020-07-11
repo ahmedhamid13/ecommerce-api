@@ -15,10 +15,12 @@ class CartsController < ApplicationController
 
   # POST /carts
   def create
-    @cart = Cart.new(cart_params)
+    @cart = Cart.find_by(user_id: cart_params[:user_id]) || Cart.new(user_id: cart_params[:user_id])
 
-    if @cart.save
-      render json: @cart, status: :created, location: @cart
+    if !@cart.id.nil? || @cart.save
+      added = add_to_cart()
+      render json: @cart, status: :created, location: @cart if added
+      render json: {cart: "cannot add it now!"}, status: 400 unless added
     else
       render json: @cart.errors, status: :unprocessable_entity
     end
@@ -46,6 +48,25 @@ class CartsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def cart_params
-      params.require(:cart).permit(:user_id)
+      params.require(:cart).permit(:user_id, :quantity, :item_id)
+    end
+
+    def add_to_cart
+      @item = Item.find(cart_params[:item_id])
+      quantity = cart_params[:quantity].to_i
+
+      return false if @item && quantity > @item.stock
+
+      @item.update(stock: @item.stock - quantity)
+
+      @itemcart = ItemCart.find_by(item_id:  @item.id, cart_id: @cart.id) || ItemCart.new(item_id:  @item.id, cart_id: @cart.id, quantity: cart_params[:quantity])
+
+      if @itemcart.id.nil?
+        return true if @itemcart.save
+      else
+        return true if @itemcart.update(quantity: @itemcart.quantity + quantity )
+      end
+
+      false
     end
 end

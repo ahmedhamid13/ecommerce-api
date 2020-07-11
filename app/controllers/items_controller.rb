@@ -3,8 +3,9 @@ class ItemsController < ApplicationController
 
   # GET /items
   def index
-    @items = Item.all
-
+    @items = Item.where(title: params[:search]) if params[:search]
+    @items = Item.all unless params[:search]
+    
     render json: @items
   end
 
@@ -51,12 +52,12 @@ class ItemsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def item_params
-      params.permit(:title, :price, :stock, :brand, :description, :images => [])
+      params.require(:item).permit(:title, :price, :stock, :brand, :description, :images => [])
     end
 
     # Only allow a trusted parameter "white list" through.
     def cat_params
-      params.permit(:category_id, :sub_categories => [])
+      params.require(:category).permit(:category_id, :sub_categories => [])
     end
 
     def item_category
