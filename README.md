@@ -31,10 +31,8 @@
     rails server
     ```
 
-# Production ecommece-api url 
-    ```
-    https://ecommer-api.herokuapp.com/
-    ```
+# Production ecommece-api url
+    ```sh https://ecommer-api.herokuapp.com/```
 
 # Created_by: Ahmed Abdelhamid
 
