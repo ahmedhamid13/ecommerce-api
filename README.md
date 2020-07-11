@@ -53,8 +53,7 @@
         >> params: search
     * GET       /items/:id
     * POST      /items         
-        >> params: title, brand, description, stock, price, images[], cat[category_id, cat[sub_categories
-    * PUT       /items/:id
+        >> params: title, brand, description, stock, price, images[], category_id, sub_categories[]
         >> params: title, brand, description, stock, price, images[] 
     * DELETE    /items/:id
 
@@ -78,7 +77,7 @@
     * DELETE    /users/sign_out
         >> params: uid, access-token, client
 
-    and Authenticate all requests you must pass this params: uid, access-token, client, with every request 
+    To Authenticate all requests you must pass this params: uid, access-token, client, with every request 
 
 # By: Ahmed Abdelhamid
 
