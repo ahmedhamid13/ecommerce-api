@@ -1,6 +1,6 @@
-class ItemCart < ApplicationRecord
+class ItemOrder < ApplicationRecord
   belongs_to :item
-  belongs_to :cart
+  belongs_to :order
 
   validates :quantity, numericality: true
   

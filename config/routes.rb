@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   mount_devise_token_auth_for 'User', at: 'users'
+  delete 'carts/items/:id', to: 'carts#remove_from_cart'
+  resources :users, only: [:index, :show]
   resources :carts, except: [:update]
+  resources :orders, except: [:update]
   resources :categories
-  resources :items, except: :destroy
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :items, except: [:destroy]
 end

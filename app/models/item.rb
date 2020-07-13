@@ -1,13 +1,15 @@
 class Item < ApplicationRecord
     has_many :sub_categories
     has_many :category, through: :sub_categories
-    has_many :item_carts
-    has_many :carts, through: :item_carts
     has_many_attached :images
 
+    has_many :item_carts
+    has_many :carts, through: :item_carts
+    has_many :item_orders
+    has_many :orders, through: :item_orders
+
     validates :title, presence: true, length: { minimum: 3 }
-    validates :price, :stock, numericality: true
-    validates :price, :stock, presence: true
+    validates :price, :stock, presence: true, numericality: { greater_than: 0 }
 
     def get_images
         arr = []

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_10_210424) do
+ActiveRecord::Schema.define(version: 2020_07_13_074154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,7 +44,7 @@ ActiveRecord::Schema.define(version: 2020_07_10_210424) do
   end
 
   create_table "categories", force: :cascade do |t|
-    t.string "title", default: "category_title", null: false
+    t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -59,6 +59,17 @@ ActiveRecord::Schema.define(version: 2020_07_10_210424) do
     t.index ["item_id"], name: "index_item_carts_on_item_id"
   end
 
+  create_table "item_orders", force: :cascade do |t|
+    t.bigint "item_id", null: false
+    t.bigint "order_id", null: false
+    t.integer "quantity"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["item_id"], name: "index_item_orders_on_item_id"
+    t.index ["order_id"], name: "index_item_orders_on_order_id"
+  end
+
   create_table "items", force: :cascade do |t|
     t.string "title", null: false
     t.decimal "price", precision: 10, scale: 2, default: "0.0", null: false
@@ -69,10 +80,21 @@ ActiveRecord::Schema.define(version: 2020_07_10_210424) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
+  create_table "orders", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "state"
+    t.string "city"
+    t.string "address"
+    t.string "telephone"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_orders_on_user_id"
+  end
+
   create_table "sub_categories", force: :cascade do |t|
     t.bigint "item_id", null: false
     t.bigint "category_id", null: false
-    t.string "title", default: "sub_category_title", null: false
+    t.string "title", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_sub_categories_on_category_id"
@@ -109,6 +131,9 @@ ActiveRecord::Schema.define(version: 2020_07_10_210424) do
   add_foreign_key "carts", "users"
   add_foreign_key "item_carts", "carts"
   add_foreign_key "item_carts", "items"
+  add_foreign_key "item_orders", "items"
+  add_foreign_key "item_orders", "orders"
+  add_foreign_key "orders", "users"
   add_foreign_key "sub_categories", "categories"
   add_foreign_key "sub_categories", "items"
 end

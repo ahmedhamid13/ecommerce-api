@@ -1,5 +1,5 @@
 class CartsController < ApplicationController
-  before_action :set_cart, only: [:show, :update, :destroy]
+  before_action :set_cart, only: [:show, :update, :destroy, :remove_from_cart]
 
   # GET /carts
   def index
@@ -35,6 +35,12 @@ class CartsController < ApplicationController
     end
   end
 
+  # DELETE /carts/items/1
+  def remove_from_cart
+    @cart.item_carts.find_by(item_id: cart_params[:item_id]).destroy
+    @cart.destroy if @cart.item_carts.empty?
+  end
+
   # DELETE /carts/1
   def destroy
     @cart.destroy
@@ -52,14 +58,12 @@ class CartsController < ApplicationController
     end
 
     def add_to_cart
-      @item = Item.find(cart_params[:item_id])
+      # @item = Item.find(cart_params[:item_id])
       quantity = cart_params[:quantity].to_i
+      # return false if @item && quantity > @item.stock
+      # @item.update(stock: @item.stock - quantity)
 
-      return false if @item && quantity > @item.stock
-
-      @item.update(stock: @item.stock - quantity)
-
-      @itemcart = ItemCart.find_by(item_id:  @item.id, cart_id: @cart.id) || ItemCart.new(item_id:  @item.id, cart_id: @cart.id, quantity: cart_params[:quantity])
+      @itemcart = ItemCart.find_by(item_id: cart_params[:item_id], cart_id: @cart.id) || ItemCart.new(item_id: cart_params[:item_id], cart_id: @cart.id, quantity: cart_params[:quantity])
 
       if @itemcart.id.nil?
         return true if @itemcart.save
