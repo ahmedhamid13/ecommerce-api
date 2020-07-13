@@ -64,9 +64,22 @@
     * POST      /carts         
         >> params: item_id, user_id, quantity 
     * DELETE    /carts/:id
+    * DELETE    /carts/items/:id
 
-4) users end-points
+4) orders end-points
 
+    * GET       /orders
+    * GET       /orders/:id
+    * POST      /orders         
+        >> params: user_id, city, address, telephone
+    * PUT      /orders         
+        >> params: city, address, telephone 
+    * DELETE    /orders/:id
+
+5) users end-points
+
+    * GET       /users
+    * GET       /users/:id
     * POST      /users         
         >> params: name, email, password, password_confirmation, avatar
     * PUT      /users         
@@ -77,7 +90,7 @@
     * DELETE    /users/sign_out
         >> params: uid, access-token, client
 
-    To Authenticate all requests you must pass this params: uid, access-token, client, with every request 
+    To Authenticate all requests you should pass this params: uid, access-token, client, with every request in header.. but for now all request doesn't require authentication.
 
 # By: Ahmed Abdelhamid
 

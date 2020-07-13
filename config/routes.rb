@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  root 'end_points#index'
   mount_devise_token_auth_for 'User', at: 'users'
   delete 'carts/items/:id', to: 'carts#remove_from_cart'
   resources :users, only: [:index, :show]
