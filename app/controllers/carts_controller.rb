@@ -54,21 +54,16 @@ class CartsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def cart_params
-      params.permit(:user_id, :quantity, :item_id)
+      params.require(:cart).permit(:user_id, :quantity, :item_id)
     end
 
     def add_to_cart
-      # @item = Item.find(cart_params[:item_id])
-      quantity = cart_params[:quantity].to_i
-      # return false if @item && quantity > @item.stock
-      # @item.update(stock: @item.stock - quantity)
-
-      @itemcart = ItemCart.find_by(item_id: cart_params[:item_id], cart_id: @cart.id) || ItemCart.new(item_id: cart_params[:item_id], cart_id: @cart.id, quantity: cart_params[:quantity])
+      @itemcart = ItemCart.find_by(item_id: params[:item_id], cart_id: @cart.id) || ItemCart.new(item_id: params[:item_id], cart_id: @cart.id, quantity: params[:quantity].to_i)
 
       if @itemcart.id.nil?
         return true if @itemcart.save
       else
-        return true if @itemcart.update(quantity: @itemcart.quantity + quantity )
+        return true if @itemcart.update(quantity: @itemcart.quantity + params[:quantity].to_i )
       end
 
       false

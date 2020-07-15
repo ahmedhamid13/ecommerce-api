@@ -20,7 +20,7 @@ class EndPointsController < ApplicationController
         },
         {
           method: 'PUT',
-          path: '/categories',
+          path: '/categories/:id',
           params: 'title',
           description: ''
         },
@@ -55,7 +55,7 @@ class EndPointsController < ApplicationController
         },
         {
           method: 'PUT',
-          path: '/items',
+          path: '/items/:id',
           params: 'title, brand, description, stock, price, images[]',
           description: ''
         },
@@ -85,7 +85,7 @@ class EndPointsController < ApplicationController
         {
           method: 'DELETE',
           path: '/carts/items/:id',
-          description: ''
+          description: 'Remove Item from cart'
         },
         {
           method: 'DELETE',
@@ -107,14 +107,19 @@ class EndPointsController < ApplicationController
         {
           method: 'POST',
           path: '/orders',
-          params: 'user_id, city, address, telephone',
+          params: 'user_id, country, city, address, telephone',
           description: ''
         },
         {
           method: 'PUT',
-          path: '/orders',
-          params: 'city, address, telephone',
+          path: '/orders/:id',
+          params: 'country, city, address, telephone',
           description: ''
+        },
+        {
+          method: 'PUT',
+          path: '/orders/deliver/:id',
+          description: 'Update Order state to "delivered"'
         },
         {
           method: 'DELETE',

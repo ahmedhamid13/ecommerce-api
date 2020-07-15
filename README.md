@@ -32,7 +32,7 @@
     ```
 
 # Production ecommece-api url
-    https://ecommer-api.herokuapp.com
+    https://api-ecomm.herokuapp.com/
 
 # Api-EndPoints
 

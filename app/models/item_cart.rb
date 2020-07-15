@@ -6,7 +6,8 @@ class ItemCart < ApplicationRecord
   
   def as_json(options={})
     super(options).merge({
-      item: Item.find(self.item_id),
+      item: self.item,
+      # item: Item.find(self.item_id),
     })
   end
 end
