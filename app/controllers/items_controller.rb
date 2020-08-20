@@ -52,7 +52,7 @@ class ItemsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def item_params
-      params.require(:item).permit(:title, :price, :stock, :brand, :description, :images => [], :category_id, :sub_categories => [])
+      params.require(:item).permit(:title, :price, :stock, :brand, :description, :category_id, images:[], sub_categories:[])
     end
 
     # Only allow a trusted parameter "white list" through.
@@ -73,3 +73,28 @@ class ItemsController < ApplicationController
       return true
     end
 end
+
+    # # Only allow a trusted parameter "white list" through.
+    # def item_params	   
+    #   params.require(:item).permit(:title, :price, :stock, :brand, :description, :images => [])
+    # end
+
+
+    # # Only allow a trusted parameter "white list" through.	    # Only allow a trusted parameter "white list" through.
+    # def cat_params
+    #   params.permit(:category_id, :sub_categories => [])
+    # end
+
+
+    # def item_category
+    #   return false if cat_params[:category_id].nil? || cat_params[:sub_categories].nil?
+    #   @category = Category.find_by(id: cat_params[:category_id])
+    #     cat_params[:sub_categories].each do |sub_category|
+    #       @subcat = SubCategory.new(title: sub_category, category_id: @category.id, item_id: @item.id)
+    #     unless @subcat.save
+    #       SubCategory.where(item_id: @item.id).destroy_all
+    #       return false
+    #     end
+    #   end
+    #   return true
+    # end
