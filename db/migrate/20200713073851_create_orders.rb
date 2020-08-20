@@ -5,8 +5,8 @@ class CreateOrders < ActiveRecord::Migration[6.0]
       t.string :state, default: 'processing'
       t.string :country
       t.string :city
-      t.string :address
-      t.string :telephone
+      t.string :address, unique: true
+      t.string :telephone, unique: true
 
       t.timestamps
     end

@@ -5,7 +5,7 @@ class Cart < ApplicationRecord
 
   def as_json(options={})
     super(options).merge({
-        item_carts: self.item_carts,
+        items: self.item_carts,
     })
   end
 end

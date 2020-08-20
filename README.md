@@ -4,7 +4,7 @@
 
 1. Download the zipped file and unzip it or Clone it
     ```
-    https://github.com/Ahmed-Abd-elhamid/ecommerce-api
+    git clone https://github.com/Ahmed-Abd-elhamid/ecommerce-api
     ```
 2. cd inside the project
     ```sh
@@ -18,7 +18,7 @@
     ```sh
     rake db:create db:migrate
     ```
-5. seed the database - generate fake test data
+5. seed the database - generate dummy data
     ```sh
     rake db:seed
     ```
@@ -34,7 +34,7 @@
 # Production ecommece-api url
     https://api-ecomm.herokuapp.com/
 
-# Api-EndPoints
+# API-EndPoints
 
 1) categoreis end-points
 
@@ -54,8 +54,8 @@
     * GET       /items/:id
     * POST      /items         
         >> params: title, brand, description, stock, price, images[], category_id, sub_categories[]
+    * PUT       /items/:id
         >> params: title, brand, description, stock, price, images[] 
-    * DELETE    /items/:id
 
 3) carts end-points
 
@@ -71,9 +71,10 @@
     * GET       /orders
     * GET       /orders/:id
     * POST      /orders         
-        >> params: user_id, city, address, telephone
-    * PUT      /orders         
-        >> params: city, address, telephone 
+        >> params: user_id, country, city, address, telephone
+    * PUT      /orders/:id         
+        >> params: country, city, address, telephone 
+    * PUT    orders/deliver/:id
     * DELETE    /orders/:id
 
 5) users end-points

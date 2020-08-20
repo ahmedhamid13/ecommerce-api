@@ -5,7 +5,7 @@ class Order < ApplicationRecord
 
   def as_json(options={})
     super(options).merge({
-        item_orders: self.item_orders,
+        items: self.item_orders,
     })
   end
 end
