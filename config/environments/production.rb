@@ -95,7 +95,7 @@ Rails.application.configure do
   # class timestamps to determine how long to wait before reading from the
   # replica.
 
-  config.api_url = 'https://ecommer-api.herokuapp.com'
+  config.api_url = 'https://api-ecomm.herokuapp.com'
 
   #
   # By default Rails will store a last write timestamp in the session. The
