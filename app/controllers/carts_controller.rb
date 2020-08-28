@@ -35,7 +35,7 @@ class CartsController < ApplicationController
     end
   end
 
-  # DELETE /carts/items/1
+  # POST /carts/items/1
   def remove_from_cart
     @cart.item_carts.find_by(item_id: cart_params[:item_id]).destroy
     @cart.destroy if @cart.item_carts.empty?

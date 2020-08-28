@@ -1,14 +1,18 @@
 Rails.application.routes.draw do
-  root 'end_points#index'
+  
+  resources :users, only: [:index, :show, :destroy]
   mount_devise_token_auth_for 'User', at: 'users'
-  resources :users, only: [:index, :show]
+  
   resources :carts, except: [:update]
-  delete 'carts/items/:id', to: 'carts#remove_from_cart'
+  post 'carts/items/:id', to: 'carts#remove_from_cart'
+  
   resources :orders
   put 'orders/deliver/:id', to: 'orders#deliver'
+  
+  resources :items, except: [:destroy]
   resources :categories
   resources :sub_categories
-  resources :items, except: [:destroy]
+  
+  root 'end_points#index'
   match '*a', :to => 'handle_errors#no_route', :via => [:get]
-
 end

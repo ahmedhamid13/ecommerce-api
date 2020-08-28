@@ -3,10 +3,10 @@ class Item < ApplicationRecord
     has_one :category, through: :sub_category
     has_many_attached :images
 
-    has_many :item_carts
-    has_many :carts, through: :item_carts
-    has_many :item_orders
-    has_many :orders, through: :item_orders
+    has_many :item_carts, dependent: :destroy
+    has_many :carts, through: :item_carts, dependent: :destroy
+    has_many :item_orders, dependent: :destroy
+    has_many :orders, through: :item_orders, dependent: :destroy
 
     validates :title, presence: true, length: { minimum: 3 }
     validates :price, :stock, presence: true, numericality: { greater_than: 0 }

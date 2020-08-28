@@ -46,27 +46,38 @@
         >> params: title
     * DELETE    /categories/:id
 
-2) items end-points
+2) sub_categoreis end-points
+
+    * GET       /sub_categories
+    * GET       /sub_categories/:id
+    * POST      /sub_categories         
+        >> params: title, category_id
+    * PUT       /sub_categories/:id          
+        >> params: title, category_id
+    * DELETE    /sub_categories/:id
+
+3) items end-points
 
     * GET       /items
     * GET       /items          
         >> params: search
     * GET       /items/:id
     * POST      /items         
-        >> params: title, brand, description, stock, price, images[], category_id, sub_categories[]
+        >> params: title, brand, description, stock, price, sub_category_id, images[]
     * PUT       /items/:id
-        >> params: title, brand, description, stock, price, images[] 
+        >> params: title, brand, description, stock, price, sub_category_id, images[] 
 
-3) carts end-points
+4) carts end-points
 
     * GET       /carts
     * GET       /carts/:id
     * POST      /carts         
         >> params: item_id, user_id, quantity 
+    * POST    /carts/items/:id
+        >> params: item_id
     * DELETE    /carts/:id
-    * DELETE    /carts/items/:id
 
-4) orders end-points
+5) orders end-points
 
     * GET       /orders
     * GET       /orders/:id
@@ -77,10 +88,11 @@
     * PUT    orders/deliver/:id
     * DELETE    /orders/:id
 
-5) users end-points
+6) users end-points
 
     * GET       /users
     * GET       /users/:id
+    * DELETE       /users/:id
     * POST      /users         
         >> params: name, email, password, password_confirmation, avatar
     * PUT      /users         

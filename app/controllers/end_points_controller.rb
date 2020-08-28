@@ -1,36 +1,6 @@
 class EndPointsController < ApplicationController
   def index
     @endpoints = {
-      item: [
-        {
-          method: 'GET',
-          path: request.url + 'items',
-          description: ''
-        },
-        {
-          method: 'GET',
-          path: request.url + 'items',
-          params: 'search',
-          description: ''
-        },
-        {
-          method: 'GET',
-          path: request.url + 'items/:id',
-          description: ''
-        },
-        {
-          method: 'POST',
-          path: request.url + 'items',
-          params: 'title, brand, description, stock, price, images[], sub_category_id',
-          description: ''
-        },
-        {
-          method: 'PUT',
-          path: request.url + 'items/:id',
-          params: 'title, brand, description, stock, price, images[], sub_category_id',
-          description: ''
-        }
-      ],
       category: [
         {
           method: 'GET',
@@ -89,6 +59,36 @@ class EndPointsController < ApplicationController
           description: ''
         }
       ],
+      item: [
+        {
+          method: 'GET',
+          path: request.url + 'items',
+          description: ''
+        },
+        {
+          method: 'GET',
+          path: request.url + 'items',
+          params: 'search',
+          description: ''
+        },
+        {
+          method: 'GET',
+          path: request.url + 'items/:id',
+          description: ''
+        },
+        {
+          method: 'POST',
+          path: request.url + 'items',
+          params: 'title, brand, description, stock, price, images[], sub_category_id',
+          description: ''
+        },
+        {
+          method: 'PUT',
+          path: request.url + 'items/:id',
+          params: 'title, brand, description, stock, price, images[], sub_category_id',
+          description: ''
+        }
+      ],
       cart: [
         {
           method: 'GET',
@@ -107,8 +107,9 @@ class EndPointsController < ApplicationController
           description: ''
         },
         {
-          method: 'DELETE',
+          method: 'POST',
           path: request.url + 'carts/items/:id',
+          params: 'item_id',
           description: 'Remove Item from cart'
         },
         {
@@ -159,6 +160,11 @@ class EndPointsController < ApplicationController
         },
         {
           method: 'GET',
+          path: request.url + 'users/:id',
+          description: ''
+        },
+        {
+          method: 'DELETE',
           path: request.url + 'users/:id',
           description: ''
         },
