@@ -34,6 +34,9 @@
 # Production ecommece-api url
     https://api-ecomm.herokuapp.com/
 
+# Postman Doc for ecommece-api url
+    https://documenter.getpostman.com/view/12318086/TVCcWTzB
+
 # API-EndPoints
 
 1) categoreis end-points

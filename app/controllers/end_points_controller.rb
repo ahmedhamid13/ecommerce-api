@@ -1,6 +1,8 @@
 class EndPointsController < ApplicationController
   def index
     @endpoints = {
+      postman_doc: "https://documenter.getpostman.com/view/12318086/TVCcWTzB",
+      github_repo: "https://github.com/Ahmed-Abd-elhamid/ecommerce-api" ,
       category: [
         {
           method: 'GET',
