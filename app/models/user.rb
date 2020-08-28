@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
   
-  has_one :Cart
+  has_one :cart
   has_one_attached :avatar
 
   def get_avatar
@@ -19,7 +19,9 @@ class User < ActiveRecord::Base
 
   def as_json(options={})
     super(options).merge({
-        avatar: self.get_avatar
+        avatar: self.get_avatar,
+        cart: self.cart,
+        user_endpoint: "#{Rails.configuration.api_url}/users/#{self.id}"
     })
   end
   

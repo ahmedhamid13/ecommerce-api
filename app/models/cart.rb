@@ -5,7 +5,9 @@ class Cart < ApplicationRecord
 
   def as_json(options={})
     super(options).merge({
-        items: self.item_carts,
+        items: self.items,
+        user: { id: self.user.id, name: self.user.name, email: self.user.email},
+        cart_endpoint: "#{Rails.configuration.api_url}/carts/#{self.id}"
     })
   end
 end

@@ -5,7 +5,9 @@ class Order < ApplicationRecord
 
   def as_json(options={})
     super(options).merge({
-        items: self.item_orders,
+        items: self.items,
+        user: self.user,
+        order_endpoint: "#{Rails.configuration.api_url}/orders/#{self.id}"
     })
   end
 end

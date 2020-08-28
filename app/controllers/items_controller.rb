@@ -19,12 +19,12 @@ class ItemsController < ApplicationController
     @item = Item.new(item_params)
     # item_category()
     if @item.save
-      if item_category()
+      # if item_category()
         render json: @item, status: :created, location: @item
-      else
-        @item.destroy
-        render json: {category: "Not Exist"}, status: 400
-      end
+      # else
+      #   @item.destroy
+      #   render json: {category: "Not Exist"}, status: 400
+      # end
     else
       render json: @item.errors, status: :unprocessable_entity
     end
@@ -52,7 +52,7 @@ class ItemsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def item_params
-      params.require(:item).permit(:title, :price, :stock, :brand, :description, :category_id, images:[], sub_categories:[])
+      params.require(:item).permit(:title, :price, :stock, :brand, :description, :sub_category_id, images:[])
     end
 
     # Only allow a trusted parameter "white list" through.

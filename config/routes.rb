@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :orders
   put 'orders/deliver/:id', to: 'orders#deliver'
   resources :categories
+  resources :sub_categories
   resources :items, except: [:destroy]
   match '*a', :to => 'handle_errors#no_route', :via => [:get]
 

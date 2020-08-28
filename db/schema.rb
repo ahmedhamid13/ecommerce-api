@@ -76,8 +76,10 @@ ActiveRecord::Schema.define(version: 2020_07_13_074154) do
     t.integer "stock", default: 0, null: false
     t.string "brand", default: "brand"
     t.text "description", default: "description"
+    t.bigint "sub_category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["sub_category_id"], name: "index_items_on_sub_category_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -93,13 +95,11 @@ ActiveRecord::Schema.define(version: 2020_07_13_074154) do
   end
 
   create_table "sub_categories", force: :cascade do |t|
-    t.bigint "item_id", null: false
-    t.bigint "category_id", null: false
     t.string "title", null: false
+    t.bigint "category_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_sub_categories_on_category_id"
-    t.index ["item_id"], name: "index_sub_categories_on_item_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -134,7 +134,7 @@ ActiveRecord::Schema.define(version: 2020_07_13_074154) do
   add_foreign_key "item_carts", "items"
   add_foreign_key "item_orders", "items"
   add_foreign_key "item_orders", "orders"
+  add_foreign_key "items", "sub_categories"
   add_foreign_key "orders", "users"
   add_foreign_key "sub_categories", "categories"
-  add_foreign_key "sub_categories", "items"
 end

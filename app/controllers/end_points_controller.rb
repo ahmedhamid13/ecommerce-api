@@ -1,6 +1,36 @@
 class EndPointsController < ApplicationController
   def index
     @endpoints = {
+      item: [
+        {
+          method: 'GET',
+          path: request.url + 'items',
+          description: ''
+        },
+        {
+          method: 'GET',
+          path: request.url + 'items',
+          params: 'search',
+          description: ''
+        },
+        {
+          method: 'GET',
+          path: request.url + 'items/:id',
+          description: ''
+        },
+        {
+          method: 'POST',
+          path: request.url + 'items',
+          params: 'title, brand, description, stock, price, images[], sub_category_id',
+          description: ''
+        },
+        {
+          method: 'PUT',
+          path: request.url + 'items/:id',
+          params: 'title, brand, description, stock, price, images[], sub_category_id',
+          description: ''
+        }
+      ],
       category: [
         {
           method: 'GET',
@@ -30,33 +60,32 @@ class EndPointsController < ApplicationController
           description: ''
         }
       ],
-      item: [
+      sub_category: [
         {
           method: 'GET',
-          path: request.url + 'items',
+          path: request.url + 'sub_categories',
           description: ''
         },
         {
           method: 'GET',
-          path: request.url + 'items',
-          params: 'search',
-          description: ''
-        },
-        {
-          method: 'GET',
-          path: request.url + 'items/:id',
+          path: request.url + 'sub_categories/:id',
           description: ''
         },
         {
           method: 'POST',
-          path: request.url + 'items',
-          params: 'title, brand, description, stock, price, images[], category_id, sub_categories[]',
+          path: request.url + 'sub_categories',
+          params: 'title, category_id',
           description: ''
         },
         {
           method: 'PUT',
-          path: request.url + 'items/:id',
-          params: 'title, brand, description, stock, price, images[]',
+          path: request.url + 'sub_categories/:id',
+          params: 'title, category_id',
+          description: ''
+        },
+        {
+          method: 'DELETE',
+          path: request.url + 'sub_categories/:id',
           description: ''
         }
       ],

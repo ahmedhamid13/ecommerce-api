@@ -1,6 +1,6 @@
 class Item < ApplicationRecord
-    has_many :sub_categories
-    has_many :category, through: :sub_categories
+    belongs_to :sub_category
+    has_one :category, through: :sub_category
     has_many_attached :images
 
     has_many :item_carts
@@ -22,8 +22,9 @@ class Item < ApplicationRecord
     def as_json(options={})
         super(options).merge({
             images: self.get_images,
-            main_category: self.category.sample,
-            sub_categories: self.sub_categories
+            # main_category: self.category,
+            sub_category: self.sub_category,
+            item_endpoint: "#{Rails.configuration.api_url}/items/#{self.id}"
         })
     end
 
